@@ -1,0 +1,10 @@
+{% extends 'classificados-na-web/base.html' %}
+
+{% block conteudo %}
+    <div class="container">
+        {% block content %}
+      <p>Tchau!</p>
+      <a href="{% url 'login'%}">Ir para a tela de login.</a>
+    {% endblock %}
+    </div>
+{% endblock conteudo %}

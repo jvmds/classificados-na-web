@@ -1,0 +1,61 @@
+{% extends 'classificados-na-web/base.html' %}
+
+{% block conteudo %}
+    <div class="container">
+        <div class="col">
+            <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="300"
+                     xmlns="http://www.w3.org/2000/svg" role="img"
+                     aria-label="Espaço reservado: miniatura"
+                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>
+                    Placeholder</title>
+                    {% if anuncio.imagem %}
+                        <image href="{% url 'classificados-na-web:imagem-anuncio' anuncio.id %}"
+                               width="100%" height="100%"></image>
+                    {% else %}
+                        <rect width="100%" height="100%" fill="#55595c"></rect>
+                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Sem Imagem</text>
+                    {% endif %}
+                </svg>
+
+                <div class="card-body">
+                    <p class="card-text">
+                    <div class="row mb-3">
+                        <div class="col-sm-4 themed-grid-col">Título:</div>
+                        <div class="col-sm-4 themed-grid-col">{{ anuncio.titulo }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4 themed-grid-col">Valor:</div>
+                        <div class="col-sm-4 themed-grid-col">{{ anuncio.valor }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4 themed-grid-col">Descrição:</div>
+                        <div class="col-sm-4 themed-grid-col">{{ anuncio.descricao }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4 themed-grid-col">Telefone:</div>
+                        <div class="col-sm-4 themed-grid-col">{{ anuncio.telefone1 }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4 themed-grid-col">Telefone:</div>
+                        <div class="col-sm-4 themed-grid-col">{{ anuncio.telefone2 }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4 themed-grid-col">Observação:</div>
+                        <div class="col-sm-4 themed-grid-col">{{ anuncio.observacao }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4 themed-grid-col">Data de criação:</div>
+                        <div class="col-sm-4 themed-grid-col">{{ anuncio.data_criacao }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4 themed-grid-col">Criador:</div>
+                        <div class="col-sm-4 themed-grid-col">{{ anuncio.user }}</div>
+                    </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock conteudo %}

@@ -1,0 +1,45 @@
+{% extends 'classificados-na-web/base.html' %}
+{% load static %}
+
+{% block css_customizado %}
+    <style>
+        .container {max-width: 960px;}
+    </style>
+{% endblock css_customizado %}
+
+{% block cabecalho %}
+    <header class="p-3 mb-3 border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="{% url 'classificados-na-web:index' %}"
+                   class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                    <img src="{% static 'imagens/logo.png' %}">
+                </a>
+            </div>
+        </div>
+    </header>
+{% endblock cabecalho %}
+
+{% block conteudo %}
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">Cadastro</h4>
+                <form class="needs-validation" action="" method="post">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        {% for campo in form %}
+                            <div class="col-12">
+                                <label class="form-label">{{ campo.label_tag }}</label>
+                                {{ campo }}
+                            </div>
+                        {% endfor %}
+
+                        <button class="w-100 btn btn-primary btn-lg" type="submit" value="submit">Criar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock conteudo %}

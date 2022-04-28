@@ -1,0 +1,39 @@
+{% extends 'classificados-na-web/base.html' %}
+{% load static %}
+
+{% block scripts %}
+    <script src="{% static 'js/controle_criacao_anuncio.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block css_customizado %}
+    <style>
+        .container {max-width: 960px;}
+    </style>
+{% endblock css_customizado %}
+
+{% block conteudo %}
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">Novo Anúncio</h4>
+                <form class="needs-validation" action="" method="post">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        {% for campo in form %}
+                            <div class="col-12">
+                                <label class="form-label">{{ campo.label_tag }}</label>
+                                {{ campo }}
+                                <div class="invalid-feedback">
+                                    teste
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        <button class="w-100 btn btn-primary btn-lg" type="submit" value="submit">Criar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock conteudo %}

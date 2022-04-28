@@ -1,0 +1,79 @@
+{% extends 'classificados-na-web/base.html' %}
+
+{% block conteudo %}
+
+    <div class="album py-5 bg-light">
+        {% block conteudo_extra %}{% endblock conteudo_extra %}
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% block cartao %}
+                    {% for anuncio in anuncios %}
+                        {% if anuncio.disponibilidade_anuncio %}
+                            <div class="col">
+                                <div class="card shadow-sm">
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                         xmlns="http://www.w3.org/2000/svg" role="img"
+                                         aria-label="Espaço reservado: miniatura"
+                                         preserveAspectRatio="xMidYMid slice" focusable="false"><title>
+                                        Placeholder</title>
+                                        {% if anuncio.imagem %}
+                                            <image href="{% url 'classificados-na-web:imagem-anuncio' anuncio.id %}"
+                                                   width="100%" height="100%"></image>
+                                        {% else %}
+                                            <rect width="100%" height="100%" fill="#55595c"></rect>
+                                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Sem Imagem</text>
+                                        {% endif %}
+                                    </svg>
+
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">{{ anuncio.titulo }}</font><font
+                                                    style="vertical-align: inherit;"></font></font>
+                                        </p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                {% block botoes %}
+                                                    <a class="btn btn-sm btn-outline-secondary"
+                                                       href="{% url 'classificados-na-web:d-anuncio' anuncio.id %}"><font
+                                                            style="vertical-align: inherit;"><font
+                                                            style="vertical-align: inherit;">Visualizar</font></font>
+                                                    </a>
+                                                {% endblock botoes %}
+                                            </div>
+                                            <small class="text-muted">
+                                                {% block data %}
+                                                    <font style="vertical-align: inherit;"><font
+                                                            style="vertical-align: inherit;">{{ anuncio.data_criacao }}</font></font>
+                                                {% endblock data %}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endblock cartao %}
+            </div>
+        </div>
+    </div>
+    <div>
+        {% block pagination %}
+            {% if is_paginated %}
+                <div class="pagination">
+                    <span class="page-links">
+                        {% if page_obj.has_previous %}
+                            <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+                        <span class="page-current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        </span>
+                        {% if page_obj.has_next %}
+                            <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                        {% endif %}
+                    </span>
+                </div>
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endblock conteudo %}
